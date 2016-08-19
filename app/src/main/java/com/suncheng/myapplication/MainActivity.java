@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.suncheng.myapplication.framework.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
@@ -17,5 +17,15 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
+        initView();
+    }
+
+    private void initView() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
