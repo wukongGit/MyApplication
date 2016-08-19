@@ -11,7 +11,6 @@ public class Version {
 
 	/**
 	 * 获取当前版本号
-	 *
 	 * @return
 	 */
 	public static String getVersionName()

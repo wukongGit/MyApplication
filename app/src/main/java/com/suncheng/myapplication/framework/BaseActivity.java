@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.view.SimpleTitleBar;

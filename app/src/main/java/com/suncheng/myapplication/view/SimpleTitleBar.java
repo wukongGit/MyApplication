@@ -10,10 +10,6 @@ import android.widget.TextView;
 
 import com.suncheng.myapplication.R;
 
-/**
- * 统一的标题栏
- * Created by yulinye on 2016/7/19.
- */
 public class SimpleTitleBar extends RelativeLayout {
 
     private View mLeftView;
