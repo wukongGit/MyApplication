@@ -35,6 +35,7 @@ public class MyApplication extends Application {
         super.onCreate();
         myApplication = this;
 
+        AppConfig.getInstance();
         NoHttp.initialize(this);
 
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
