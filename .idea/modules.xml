@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageLoader/imageLoader.iml" filepath="$PROJECT_DIR$/imageLoader/imageLoader.iml" />
       <module fileurl="file://$PROJECT_DIR$/nohttp/nohttp.iml" filepath="$PROJECT_DIR$/nohttp/nohttp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nohttp/nohttp.iml" filepath="$PROJECT_DIR$/nohttp/nohttp.iml" />
     </modules>
   </component>
 </project>
