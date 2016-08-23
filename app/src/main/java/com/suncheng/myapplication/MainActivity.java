@@ -21,11 +21,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-
+        String na = "";
+        //int s = na.charAt(2);
     }
 
     @Override
     public void onClick(View v) {
 
     }
+
 }
