@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.suncheng.crashcatch.CrashHandler;
 import com.yolanda.nohttp.NoHttp;
 
 public class MyApplication extends Application {
@@ -35,6 +36,8 @@ public class MyApplication extends Application {
         super.onCreate();
         myApplication = this;
 
+        CrashHandler catchHandler = CrashHandler.getInstance();
+        catchHandler.init(getApplicationContext(), getPackageName());
         AppConfig.getInstance();
         NoHttp.initialize(this);
 
