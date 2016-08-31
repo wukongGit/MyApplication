@@ -2,13 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    >
-    <TextView
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/news_list"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="初始化"
-        android:gravity="center"
-        />
+        android:layout_height="match_parent"></ListView>
+
 </LinearLayout>

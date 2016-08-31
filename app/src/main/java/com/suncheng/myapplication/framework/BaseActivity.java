@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.suncheng.myapplication.R;
-import com.suncheng.myapplication.view.SimpleTitleBar;
 
 /**
  * Created by suncheng on 2016/8/18.

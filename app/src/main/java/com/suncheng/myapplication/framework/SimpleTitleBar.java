@@ -1,4 +1,4 @@
-package com.suncheng.myapplication.view;
+package com.suncheng.myapplication.framework;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;

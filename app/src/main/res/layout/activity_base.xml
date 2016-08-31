@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.suncheng.myapplication.view.SimpleTitleBar
+    <com.suncheng.myapplication.framework.SimpleTitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="48dp">
-    </com.suncheng.myapplication.view.SimpleTitleBar>
+    </com.suncheng.myapplication.framework.SimpleTitleBar>
     <FrameLayout
         android:id="@+id/layout_activity_base_content_root"
         android:layout_width="match_parent"
