@@ -8,10 +8,8 @@ import android.os.Environment;
 import android.os.Looper;
 import android.widget.Toast;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -20,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import de.mindpipe.android.logging.log4j.LogConfigurator;
 
 /**
  * Created by suncheng on 2016/8/23.
@@ -37,8 +33,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
-    private String mPackageName;
-
     /** 保证只有一个CrashHandler实例 */
     private CrashHandler() {
     }
@@ -53,9 +47,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     /**
      * 初始化
      */
-    public void init(Context context, String packname) {
+    public void init(Context context) {
         mContext = context;
-        mPackageName = packname;
         // 获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         // 设置该CrashHandler为程序的默认处理器
@@ -171,16 +164,21 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     private void saveLog(String sb) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        String time = df.format(new Date());
-        final LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(Environment.getExternalStorageDirectory() + File.separator + mPackageName + "/" + time + ".log");
-        // Set the root log level
-        logConfigurator.setRootLevel(Level.DEBUG);
-        // Set log level of a specific logger
-        logConfigurator.setLevel("org.apache", Level.ERROR);
-        logConfigurator.configure();
-        Logger gLogger = Logger.getLogger("crash");
-        gLogger.debug(sb);
+        try{
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String time = formatter.format(new Date());
+            String fileName = "Crash-"+time+".log";
+            if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                String path =Environment.getExternalStorageDirectory() + File.separator  + "com.sunc.pro/";
+                File dir = new File(path);
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+                FileOutputStream fos = new FileOutputStream(path+fileName);
+                fos.write(sb.toString().getBytes());
+                fos.close();
+            }
+        } catch(Exception e){
+        }
     }
 }
