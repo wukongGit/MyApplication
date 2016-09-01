@@ -37,7 +37,7 @@ public class MyApplication extends Application {
         myApplication = this;
 
         CrashHandler catchHandler = CrashHandler.getInstance();
-        catchHandler.init(getApplicationContext(), getPackageName());
+        catchHandler.init(getApplicationContext());
         AppConfig.getInstance();
         NoHttp.initialize(this);
 
