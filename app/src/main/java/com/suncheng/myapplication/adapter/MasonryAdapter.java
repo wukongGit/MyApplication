@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lwp.design.R;
+import com.suncheng.myapplication.R;
+import com.suncheng.myapplication.image.ImageHelper;
+import com.suncheng.myapplication.model.Article;
 
 import java.util.List;
 
@@ -16,54 +18,56 @@ import java.util.List;
  */
 
 public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryView>{
-    private List<Product> products;
-    private static RecycleItemClickListener itemClickListener;
+    private List<Article> products;
 
+    public MasonryAdapter() {
+    }
 
-    public MasonryAdapter(List<Product> list,RecycleItemClickListener clickListener) {
-        products=list;
-        itemClickListener=clickListener;
+    public void setData(List<Article> list) {
+        products = list;
+    }
+
+    public void addData(List<Article> list) {
+        if(products == null || list == null) {
+            return;
+        }
+        products.addAll(list);
     }
 
     @Override
     public MasonryView onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_masonry_item, viewGroup, false);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.news_item, viewGroup, false);
         return new MasonryView(view);
     }
 
     @Override
     public void onBindViewHolder(MasonryView masonryView, int position) {
-        masonryView.imageView.setImageResource(products.get(position).getImg());
-        masonryView.textView.setText(products.get(position).getTitle());
-
+        ImageHelper.getInstance().displayImage(products.get(position).getImgUrl(), masonryView.imageView, R.mipmap.ic_launcher);
+        masonryView.title.setText(products.get(position).getTitle());
+        masonryView.author.setText(products.get(position).getAuthor());
     }
 
 
     @Override
     public int getItemCount() {
+        if(products == null) {
+            return 0;
+        }
         return products.size();
     }
 
     //viewholder
-    public static class MasonryView extends  RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class MasonryView extends  RecyclerView.ViewHolder {
 
         private ImageView imageView;
-        private TextView textView;
+        private TextView title, author;
 
 
        public MasonryView(View itemView){
            super(itemView);
-           imageView= (ImageView) itemView.findViewById(R.id.masonry_item_img );
-           textView= (TextView) itemView.findViewById(R.id.masonry_item_title);
-           itemView.setOnClickListener(this);
-
+           imageView= (ImageView) itemView.findViewById(R.id.image );
+           title= (TextView) itemView.findViewById(R.id.title);
+           author = (TextView) itemView.findViewById(R.id.author);
        }
-
-        @Override
-        public void onClick(View v) {
-            itemClickListener.onItemClick(v,this.getLayoutPosition());
-        }
     }
-
-
 }

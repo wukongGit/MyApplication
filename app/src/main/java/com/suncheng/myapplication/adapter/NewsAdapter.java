@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suncheng.myapplication.R;
+import com.suncheng.myapplication.image.ImageHelper;
 import com.suncheng.myapplication.model.Article;
 
 import java.util.List;
@@ -50,18 +52,21 @@ public class NewsAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.news_item, null);
             holder.title = (TextView)convertView.findViewById(R.id.title);
-            holder.content = (TextView)convertView.findViewById(R.id.content);
+            holder.author = (TextView)convertView.findViewById(R.id.author);
+            holder.image = (ImageView) convertView.findViewById(R.id.image);
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder)convertView.getTag();
         }
         holder.title.setText(mList.get(position).getTitle());
-        holder.content.setText(mList.get(position).getContent());
+        holder.author.setText(mList.get(position).getAuthor());
+        ImageHelper.getInstance().displayImage(mList.get(position).getImgUrl(), holder.image, R.mipmap.ic_launcher);
         return convertView;
     }
 
     class ViewHolder {
+        ImageView image;
         TextView title;
-        TextView content;
+        TextView author;
     }
 }

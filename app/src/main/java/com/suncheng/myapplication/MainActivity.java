@@ -1,31 +1,29 @@
 package com.suncheng.myapplication;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.suncheng.myapplication.adapter.NewsAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
+import com.suncheng.myapplication.adapter.MasonryAdapter;
 import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
+import com.suncheng.myapplication.net.JsoupController;
+import com.suncheng.myapplication.net.OnDataCallBack;
+import com.suncheng.myapplication.utils.NetworkUtils;
+import com.suncheng.myapplication.view.SpacesItemDecoration;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private ListView mListView;
-    private NewsAdapter mAdapter;
+    private PullToRefreshRecyclerView mListView;
+    private MasonryAdapter mAdapter;
+    private JsoupController mJsoupController;
+    private int currentPage = 1;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
@@ -42,15 +40,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        mListView = (ListView) findViewById(R.id.news_list);
-        mAdapter = new NewsAdapter(this);
-        try {
-            ProgressAsyncTask asyncTask=new ProgressAsyncTask();
-            asyncTask.execute(10000);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        mListView = (PullToRefreshRecyclerView) findViewById(R.id.news_list);
+        mListView.getRefreshableView().setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        SpacesItemDecoration decoration=new SpacesItemDecoration(16);
+        mListView.getRefreshableView().addItemDecoration(decoration);
+        mAdapter = new MasonryAdapter();
+        mListView.setAdapter(mAdapter);
+        mJsoupController = new JsoupController();
+        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
+                if(NetworkUtils.isNetworkStrictlyAvailable(MainActivity.this)) {
+                    currentPage = 1;
+                    mJsoupController.getArticleList(new ArticlePullDownListCallback(), 1);
+                }else {
+                    mListView.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
+                if(NetworkUtils.isNetworkStrictlyAvailable(MainActivity.this)){
+                    currentPage++;
+                    mJsoupController.getArticleList(new ArticlePullUpListCallback(), currentPage);
+                }else {
+                    mListView.onRefreshComplete();
+                }
+
+            }
+        });
+        mJsoupController.getArticleList(new ArticlePullDownListCallback(), currentPage);
     }
 
     @Override
@@ -74,40 +93,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return super.onKeyDown(keyCode, event);
     }
 
-    class ProgressAsyncTask extends AsyncTask<Integer, Integer, List<Article>> {
-        public ProgressAsyncTask() {
-            super();
-        }
+    class ArticlePullDownListCallback implements OnDataCallBack<ArrayList<Article>> {
 
         @Override
-        protected List<Article> doInBackground(Integer... params) {
-            List<Article> list = new ArrayList<>();
-            Document doc = null;
-            try {
-                doc = Jsoup.connect("http://jcodecraeer.com/plus/list.php?tid=4").get();
-                Elements ListDiv = doc.getElementsByClass("archive-item");
-                for (Element element :ListDiv) {
-                    Element detail = element.getElementsByClass("archive-detail").get(0);
-                    String title = detail.getElementsByTag("h3").text();
-                    String content = detail.getElementsByTag("p").text();
-                    Article article = new Article();
-                    article.setTitle(title);
-                    article.setContent(content);
-                    list.add(article);
-                }
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return list;
-        }
-
-        @Override
-        protected void onPostExecute(List<Article> result) {
+        public void onSuccess(ArrayList<Article> result, int statusCode, String message) {
             mAdapter.setData(result);
-            mListView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            mListView.onRefreshComplete();
         }
 
+        @Override
+        public void onFailed(Exception e, int responseCode) {
+            mListView.onRefreshComplete();
+        }
+    }
+
+    class ArticlePullUpListCallback implements OnDataCallBack<ArrayList<Article>> {
+
+        @Override
+        public void onSuccess(ArrayList<Article> result, int statusCode, String message) {
+            mAdapter.addData(result);
+            mAdapter.notifyDataSetChanged();
+            mListView.onRefreshComplete();
+        }
+
+        @Override
+        public void onFailed(Exception e, int responseCode) {
+            mListView.onRefreshComplete();
+        }
     }
 
 }

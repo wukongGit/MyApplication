@@ -21,9 +21,6 @@ import java.nio.ByteBuffer;
 import java.util.Enumeration;
 import java.util.List;
 
-/**
- * Created by xujiexing on 14-6-10.
- */
 public class NetworkUtils {
     private static WifiManager.WifiLock sWifiLocker;
     private static final String TAG = NetworkUtils.class.toString();
@@ -32,19 +29,17 @@ public class NetworkUtils {
         if (sWifiLocker == null) {
             Log.d(TAG, "Create WifiManager for " + (Build.VERSION.SDK_INT >= 9 ? "WIFI_MODE_HIPREF" : "WIFI_MODE_FULL"));
             sWifiLocker = ((WifiManager) c.getSystemService(Context.WIFI_SERVICE))
-                    .createWifiLock(Build.VERSION.SDK_INT >= 9 ? 3 : WifiManager.WIFI_MODE_FULL, "YY");
+                    .createWifiLock(Build.VERSION.SDK_INT >= 9 ? 3 : WifiManager.WIFI_MODE_FULL, "CC");
         }
         return sWifiLocker;
     }
 
     public static void lockWifi(Context c) {
-        Log.d(TAG, "lock wifi");
         if (!wifiLocker(c).isHeld())
             wifiLocker(c).acquire();
     }
 
     public static void unlockWifi(Context c) {
-        Log.d(TAG, "unlock wifi");
         if (wifiLocker(c).isHeld())
             wifiLocker(c).release();
     }
