@@ -1,9 +1,11 @@
 package com.suncheng.myapplication.model;
 
+import java.io.Serializable;
+
 /**
  * Created by suncheng on 2016/8/31.
  */
-public class Article {
+public class Article implements Serializable{
     private String author;
     private String title;
     private String imgUrl;

@@ -1,12 +1,16 @@
 package com.suncheng.myapplication.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.suncheng.myapplication.DetailActivity;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.image.ImageHelper;
 import com.suncheng.myapplication.model.Article;
@@ -25,13 +29,6 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
 
     public void setData(List<Article> list) {
         products = list;
-    }
-
-    public void addData(List<Article> list) {
-        if(products == null || list == null) {
-            return;
-        }
-        products.addAll(list);
     }
 
     @Override
@@ -58,8 +55,7 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
         return products.size();
     }
 
-    //viewholder
-    public static class MasonryView extends  RecyclerView.ViewHolder {
+    public class MasonryView extends  RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imageView;
         private TextView title, author, praise, scan;
@@ -72,6 +68,16 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
            author = (TextView) itemView.findViewById(R.id.author);
            praise = (TextView) itemView.findViewById(R.id.praise);
            scan = (TextView) itemView.findViewById(R.id.scan);
+           itemView.setOnClickListener(this);
        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getLayoutPosition();
+            Context context = v.getContext();
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("article", products.get(position));
+            context.startActivity(intent);
+        }
     }
 }

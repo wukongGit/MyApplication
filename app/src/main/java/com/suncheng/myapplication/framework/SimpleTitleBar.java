@@ -30,7 +30,7 @@ public class SimpleTitleBar extends RelativeLayout {
     public SimpleTitleBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if (getBackground() == null) {
-            setBackgroundResource(R.color.colorPrimary);
+            setBackgroundResource(R.color.titleBar);
         }
         mContext = context;
         init();

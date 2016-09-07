@@ -12,22 +12,24 @@ import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 import com.suncheng.myapplication.adapter.MasonryAdapter;
 import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
+import com.suncheng.myapplication.net.BaseController;
 import com.suncheng.myapplication.net.JsoupController;
-import com.suncheng.myapplication.net.OnDataCallBack;
 import com.suncheng.myapplication.utils.NetworkUtils;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity {
     private PullToRefreshRecyclerView mListView;
     private MasonryAdapter mAdapter;
+    private List<Article> mArticles;
     private JsoupController mJsoupController;
     private int currentPage = 1;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
-        setTitle("演示");
+        setTitle("美拍");
         setContentView(R.layout.activity_main);
         setBackListner(new View.OnClickListener() {
             @Override
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mListView.getRefreshableView().addItemDecoration(decoration);
         mAdapter = new MasonryAdapter();
         mListView.setAdapter(mAdapter);
+        mArticles = new ArrayList<>();
         mJsoupController = new JsoupController();
         mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
@@ -72,11 +75,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mJsoupController.getArticleList(new ArticlePullDownListCallback(), currentPage);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
     private long exitTime = 0;
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -93,32 +91,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return super.onKeyDown(keyCode, event);
     }
 
-    class ArticlePullDownListCallback implements OnDataCallBack<ArrayList<Article>> {
+    class ArticlePullDownListCallback extends BaseController.CommonUpdateViewAsyncCallback<ArrayList<Article>> {
 
         @Override
-        public void onSuccess(ArrayList<Article> result, int statusCode, String message) {
-            mAdapter.setData(result);
+        public void onPostExecute(ArrayList<Article> articles) {
+            mArticles.clear();
+            mArticles.addAll(articles);
+            mAdapter.setData(articles);
             mAdapter.notifyDataSetChanged();
             mListView.onRefreshComplete();
         }
 
         @Override
-        public void onFailed(Exception e, int responseCode) {
+        public void onException(Exception ie) {
             mListView.onRefreshComplete();
         }
     }
 
-    class ArticlePullUpListCallback implements OnDataCallBack<ArrayList<Article>> {
+    class ArticlePullUpListCallback extends BaseController.CommonUpdateViewAsyncCallback<ArrayList<Article>> {
 
         @Override
-        public void onSuccess(ArrayList<Article> result, int statusCode, String message) {
-            mAdapter.addData(result);
+        public void onPostExecute(ArrayList<Article> articles) {
+            mArticles.addAll(articles);
+            mAdapter.setData(mArticles);
             mAdapter.notifyDataSetChanged();
             mListView.onRefreshComplete();
         }
 
         @Override
-        public void onFailed(Exception e, int responseCode) {
+        public void onException(Exception ie) {
             mListView.onRefreshComplete();
         }
     }
