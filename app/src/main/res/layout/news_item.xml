@@ -9,12 +9,11 @@
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#55000000"
-        android:orientation="vertical"
         android:padding="2dp"
         >
         <TextView
@@ -23,13 +22,39 @@
             android:id="@+id/title"
             android:textColor="#ffffff"
             android:singleLine="true"
+            android:textSize="15sp"
             />
         <TextView
+            android:layout_below="@id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/author"
             android:singleLine="true"
             android:textColor="#ffffff"
+            android:textSize="12sp"
             />
-    </LinearLayout>
+        <TextView
+            android:layout_below="@id/title"
+            android:layout_alignParentRight="true"
+            android:id="@+id/praise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/praise_icon"
+            android:drawablePadding="2dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_below="@id/title"
+            android:layout_toLeftOf="@id/praise"
+            android:layout_marginRight="5dp"
+            android:id="@+id/scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/scan_icon"
+            android:drawablePadding="2dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="12sp"/>
+    </RelativeLayout>
 </RelativeLayout>

@@ -45,6 +45,8 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
         ImageHelper.getInstance().displayImage(products.get(position).getImgUrl(), masonryView.imageView, R.mipmap.ic_launcher);
         masonryView.title.setText(products.get(position).getTitle());
         masonryView.author.setText(products.get(position).getAuthor());
+        masonryView.praise.setText(products.get(position).getPraise());
+        masonryView.scan.setText(products.get(position).getScan());
     }
 
 
@@ -60,7 +62,7 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
     public static class MasonryView extends  RecyclerView.ViewHolder {
 
         private ImageView imageView;
-        private TextView title, author;
+        private TextView title, author, praise, scan;
 
 
        public MasonryView(View itemView){
@@ -68,6 +70,8 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
            imageView= (ImageView) itemView.findViewById(R.id.image );
            title= (TextView) itemView.findViewById(R.id.title);
            author = (TextView) itemView.findViewById(R.id.author);
+           praise = (TextView) itemView.findViewById(R.id.praise);
+           scan = (TextView) itemView.findViewById(R.id.scan);
        }
     }
 }
