@@ -55,7 +55,6 @@ public class PullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
             return false;
         }
         int lastPosition = adapter.getItemCount();
-        //LinearLayoutManager linearLayoutManager = (LinearLayoutManager) getRefreshableView().getLayoutManager();
         int lastVisiblePosition = getLastVisiblePosition();
         return lastVisiblePosition >= lastPosition - 1;
     }
@@ -80,7 +79,7 @@ public class PullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
             position = ((GridLayoutManager) getRefreshableView().getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         } else if (getRefreshableView().getLayoutManager() instanceof StaggeredGridLayoutManager) {
             StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) getRefreshableView().getLayoutManager();
-            int[] lastPositions = layoutManager.findFirstVisibleItemPositions(new int[layoutManager.getSpanCount()]);
+            int[] lastPositions = layoutManager.findFirstCompletelyVisibleItemPositions(new int[layoutManager.getSpanCount()]);
             position = getMinPositions(lastPositions);
         } else {
             position = 0;
