@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
         setBackListner(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                applicationFinish();
             }
         });
         initView();
