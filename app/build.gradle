@@ -29,4 +29,7 @@ dependencies {
     compile project(':crashcatch')
     compile files('libs/jsoup-1.7.2.jar')
     compile project(':pullToRefresh')
+
+    // https://github.com/anthonycr/Grant
+    compile 'com.anthonycr.grant:permissions:1.0'
 }

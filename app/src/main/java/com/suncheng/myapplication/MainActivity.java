@@ -1,12 +1,21 @@
 package com.suncheng.myapplication;
 
+import android.Manifest;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 import com.suncheng.myapplication.adapter.MasonryAdapter;
@@ -39,7 +48,6 @@ public class MainActivity extends BaseActivity {
             }
         });
         initView();
-
     }
 
     private void initView() {
@@ -74,6 +82,56 @@ public class MainActivity extends BaseActivity {
             }
         });
         mJsoupController.getArticleList(new ArticlePullDownListCallback(), currentPage);
+    }
+
+    private void checkPermissions() {
+        String [] permissions = new String[]{
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+        };
+        PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(this, permissions, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                showPermissionDenyDialog();
+            }
+        });
+    }
+
+    private void showPermissionDenyDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setMessage("请打开相应的权限，否则将会导致应用程序不可用！")
+                .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            Intent i = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+
+                            String pkg = "com.android.settings";
+                            String cls = "com.android.settings.applications.InstalledAppDetails";
+
+                            i.setComponent(new ComponentName(pkg, cls));
+                            i.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(i);
+                        } catch (Exception e) {
+
+                        } finally {
+                            finish();
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
     }
 
     private long exitTime = 0;
