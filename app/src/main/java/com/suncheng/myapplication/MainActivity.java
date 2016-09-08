@@ -3,6 +3,7 @@ package com.suncheng.myapplication;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
 import com.suncheng.myapplication.net.BaseController;
 import com.suncheng.myapplication.net.JsoupController;
+import com.suncheng.myapplication.utils.BlankUtil;
 import com.suncheng.myapplication.utils.NetworkUtils;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
 
@@ -55,7 +57,7 @@ public class MainActivity extends BaseActivity {
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
                 if(NetworkUtils.isNetworkStrictlyAvailable(MainActivity.this)) {
                     currentPage = 1;
-                    mJsoupController.getArticleList(new ArticlePullDownListCallback(), 1);
+                    mJsoupController.getArticleList(new ArticlePullDownListCallback(), currentPage);
                 }else {
                     mListView.onRefreshComplete();
                 }
@@ -94,6 +96,15 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPostExecute(ArrayList<Article> articles) {
+            if(BlankUtil.isBlank(articles)) {
+                if(BlankUtil.isBlank(mArticles)) {
+                    mJsoupController.getArticleListLocal(this);
+                }
+                return;
+            }
+            if(BlankUtil.isBlank(mArticles)) {
+                mJsoupController.setArticleListLocal(articles);
+            }
             mArticles.clear();
             mArticles.addAll(articles);
             mAdapter.setData(articles);
@@ -104,6 +115,10 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onException(Exception ie) {
             mListView.onRefreshComplete();
+            if(BlankUtil.isBlank(mArticles)) {
+                mJsoupController.getArticleListLocal(this);
+            }
+            return;
         }
     }
 

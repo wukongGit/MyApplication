@@ -1,11 +1,21 @@
 package com.suncheng.myapplication.image;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.widget.ImageView;
+
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.suncheng.myapplication.utils.FileUtil;
+
+import java.io.File;
 
 public class ImageHelper {
 
@@ -45,6 +55,20 @@ public class ImageHelper {
             }
         }
         return sInstance;
+    }
+
+    public void initImageloader(Context context) {
+        int memClass = ((ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
+        int cacheSize = Math.max(2, memClass / 8) * 1024 * 1024;
+        File cache = FileUtil.getCacheDirectory(context, Environment.DIRECTORY_PICTURES);
+        File reserveCache = FileUtil.getReserveDiskCacheDir(context, Environment.DIRECTORY_PICTURES);
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration
+                .Builder(context)
+                .threadPriority(Thread.NORM_PRIORITY -2)
+                .discCache(new UnlimitedDiskCache(cache, reserveCache, new Md5FileNameGenerator()))
+                .memoryCacheSize(cacheSize)
+                .build();//开始构建
+        ImageLoader.getInstance().init(config);
     }
 
     public void displayImage(String url, ImageView view, int defaultImageResId) {

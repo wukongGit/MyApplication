@@ -16,6 +16,7 @@
 package com.suncheng.myapplication.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -50,6 +51,60 @@ public class FileUtil {
         }
         return path;
     }
+
+    public static File getCacheDirectory(Context context, String type) {
+        return getCacheDirectory(context, type, true);
+    }
+
+    public static File getReserveDiskCacheDir(Context context, String type) {
+        File cacheDir = getCacheDirectory(context, type, false);
+        File individualDir = new File(cacheDir, "uil-images");
+        if (individualDir.exists() || individualDir.mkdir()) {
+            cacheDir = individualDir;
+        }
+        return cacheDir;
+    }
+
+
+    public static File getCacheDirectory(Context context, String type, boolean preferExternal) {
+        File appCacheDir = null;
+        String externalStorageState;
+        try {
+            externalStorageState = Environment.getExternalStorageState();
+        } catch (NullPointerException e) { // (sh)it happens (Issue #660)
+            externalStorageState = "";
+        } catch (IncompatibleClassChangeError e) { // (sh)it happens too (Issue #989)
+            externalStorageState = "";
+        }
+        if (preferExternal && Environment.MEDIA_MOUNTED.equals(externalStorageState) && Environment.isExternalStorageEmulated()) {
+            appCacheDir = getExternalCacheDir(context, type);
+        }
+        if (appCacheDir == null) {
+            appCacheDir = new File(context.getFilesDir(), type);
+        }
+        if (appCacheDir == null) {
+            String cacheDirPath = "/data/data/" + context.getPackageName() + "/file/";
+            appCacheDir = new File(cacheDirPath, type);
+        }
+        return appCacheDir;
+    }
+
+    private static File getExternalCacheDir(Context context, String type) {
+        File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
+        File appCacheDir = new File(new File(dataDir, context.getPackageName()), "files");
+        File cacheDir = new File(appCacheDir, type);
+        if (!cacheDir.exists()) {
+            if (!cacheDir.mkdirs()) {
+                return null;
+            }
+            try {
+                new File(cacheDir, ".nomedia").createNewFile();
+            } catch (IOException e) {
+            }
+        }
+        return cacheDir;
+    }
+
 
     /**
      * SD卡是否可用.

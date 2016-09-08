@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.suncheng.crashcatch.CrashHandler;
+import com.suncheng.myapplication.image.ImageHelper;
 import com.yolanda.nohttp.NoHttp;
 
 public class MyApplication extends Application {
@@ -40,9 +41,7 @@ public class MyApplication extends Application {
         catchHandler.init(getApplicationContext());
         AppConfig.getInstance();
         NoHttp.initialize(this);
-
-        ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
-        ImageLoader.getInstance().init(configuration);
+        ImageHelper.getInstance().initImageloader(this);
     }
 
     /**

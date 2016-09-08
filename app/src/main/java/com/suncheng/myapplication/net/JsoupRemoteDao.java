@@ -1,7 +1,5 @@
 package com.suncheng.myapplication.net;
 
-import android.util.Log;
-
 import com.suncheng.myapplication.model.Article;
 
 import org.json.JSONArray;
@@ -17,7 +15,7 @@ import java.util.List;
 /**
  * Created by suncheng on 2016/9/7.
  */
-public class JsoupDao {
+public class JsoupRemoteDao {
     public List<Article> getArticleList(String removeUrl) {
         List<Article> list = new ArrayList<>();
         Document doc = null;
