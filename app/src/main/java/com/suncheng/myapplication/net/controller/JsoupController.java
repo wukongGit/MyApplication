@@ -1,7 +1,8 @@
-package com.suncheng.myapplication.net;
+package com.suncheng.myapplication.net.controller;
 
 import com.suncheng.myapplication.framework.Constants;
 import com.suncheng.myapplication.model.Article;
+
 import java.util.List;
 
 /**

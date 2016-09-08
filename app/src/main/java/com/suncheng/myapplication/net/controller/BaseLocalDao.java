@@ -1,4 +1,4 @@
-package com.suncheng.myapplication.net;
+package com.suncheng.myapplication.net.controller;
 
 import com.suncheng.myapplication.framework.MyApplication;
 import com.suncheng.myapplication.model.Article;

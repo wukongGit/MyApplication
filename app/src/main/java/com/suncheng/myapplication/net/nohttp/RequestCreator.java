@@ -1,4 +1,4 @@
-package com.suncheng.myapplication.net;
+package com.suncheng.myapplication.net.nohttp;
 
 import com.suncheng.myapplication.framework.MyApplication;
 import com.suncheng.myapplication.utils.TelephonyUtils;

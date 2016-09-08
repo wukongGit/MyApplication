@@ -2,25 +2,17 @@ package com.suncheng.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 import com.suncheng.myapplication.adapter.ImageAdapter;
-import com.suncheng.myapplication.adapter.MasonryAdapter;
 import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
-import com.suncheng.myapplication.net.BaseController;
-import com.suncheng.myapplication.net.JsoupController;
-import com.suncheng.myapplication.utils.NetworkUtils;
+import com.suncheng.myapplication.net.controller.BaseController;
+import com.suncheng.myapplication.net.controller.JsoupController;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DetailActivity extends BaseActivity {
     private PullToRefreshRecyclerView mListView;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.suncheng.myapplication.net;
+package com.suncheng.myapplication.net.nohttp;
 
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.download.DownloadQueue;
