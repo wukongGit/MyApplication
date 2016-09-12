@@ -87,7 +87,7 @@ public class TabActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                applicationFinish();
+                finish();
             }
             return true;
         }
