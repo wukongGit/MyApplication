@@ -1,21 +1,67 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("PRC"))
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
 
     defaultConfig {
-        applicationId "example.suncheng.com.myapplication"
+        applicationId "com.suncheng.myapplication"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            def propsFile = rootProject.file('pro.properties')
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            storeFile = file(props['key.store'])
+            storePassword = props['key.store.password']
+            keyAlias = props['key.alias']
+            keyPassword = props['key.alias.password']
         }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为xxx_v1.0_2015-01-15_wandoujia.apk  xxx可以进行自定义
+                        def fileName = "pro${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    productFlavors {
+        GooglePlay{}
+        androidmarket{}
+    }
+    //批量配置
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
 
