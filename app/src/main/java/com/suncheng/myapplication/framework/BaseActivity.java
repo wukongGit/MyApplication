@@ -63,6 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
+        mTitleBar.setVisibility(View.VISIBLE);
         mTitleBar.setTitle((String) title);
     }
 

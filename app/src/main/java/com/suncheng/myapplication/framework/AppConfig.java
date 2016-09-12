@@ -39,9 +39,9 @@ public class AppConfig {
     public String APP_PATH_ROOT;
 
     private AppConfig() {
-        preferences = MyApplication.getApp().getSharedPreferences("nohttp_sample", Context.MODE_PRIVATE);
+        preferences = MyApplication.getApp().getSharedPreferences("beautiful_picture", Context.MODE_PRIVATE);
 
-        APP_PATH_ROOT = FileUtil.getRootPath().getAbsolutePath() + File.separator + "NoHttpSample";
+        APP_PATH_ROOT = FileUtil.getRootPath().getAbsolutePath() + File.separator + "BeautifulPicture";
         FileUtil.initDirectory(APP_PATH_ROOT);
     }
 

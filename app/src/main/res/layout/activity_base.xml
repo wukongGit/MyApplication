@@ -9,6 +9,7 @@
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:visibility="gone"
         >
     </com.suncheng.myapplication.framework.SimpleTitleBar>
     <FrameLayout

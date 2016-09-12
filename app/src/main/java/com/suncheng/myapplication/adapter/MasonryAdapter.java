@@ -3,14 +3,13 @@ package com.suncheng.myapplication.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.suncheng.myapplication.DetailActivity;
+import com.suncheng.myapplication.activity.DetailActivity;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.image.ImageHelper;
 import com.suncheng.myapplication.model.Article;

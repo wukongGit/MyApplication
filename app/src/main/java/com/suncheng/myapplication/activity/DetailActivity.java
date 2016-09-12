@@ -1,10 +1,11 @@
-package com.suncheng.myapplication;
+package com.suncheng.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
+import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.adapter.ImageAdapter;
 import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
@@ -22,7 +23,7 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_recommend);
         mArticle = (Article) getIntent().getSerializableExtra("article");
         setTitle(mArticle.getTitle());
         setBackListner(new View.OnClickListener() {
