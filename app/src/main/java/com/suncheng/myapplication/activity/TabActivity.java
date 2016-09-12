@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.fragment.RecommendFragment;
 import com.suncheng.myapplication.framework.BaseActivity;
+import com.suncheng.myapplication.framework.Constants;
 import com.suncheng.myapplication.utils.BlankUtil;
 import com.suncheng.myapplication.view.PagerSlidingTabStrip;
 
@@ -36,22 +37,16 @@ public class TabActivity extends BaseActivity {
 
     public void initFragmentPager() {
         mTitleList.clear();
-        mTitleList.add("经典");
-        mTitleList.add("文艺");
-        mTitleList.add("浪漫");
-        mTitleList.add("校园");
-        mTitleList.add("人物");
-        mTitleList.add("自然");
-        mTitleList.add("情怀");
-        mTitleList.add("怀旧");
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
-        mFragmentList.add(RecommendFragment.newInstance());
+        mTitleList.add("推荐");
+        mTitleList.add("热门");
+        mTitleList.add("潜力");
+        mTitleList.add("最新");
+        mTitleList.add("约约");
+        mFragmentList.add(RecommendFragment.newInstance(Constants.POCO_URL_RECOMMEND));
+        mFragmentList.add(RecommendFragment.newInstance(Constants.POCO_URL_HOT));
+        mFragmentList.add(RecommendFragment.newInstance(Constants.POCO_URL_POTENTIAL));
+        mFragmentList.add(RecommendFragment.newInstance(Constants.POCO_URL_NEW));
+        mFragmentList.add(RecommendFragment.newInstance(Constants.POCO_URL_YUE));
 
         mViewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager()));
         mPagerSlidingTabStrip.setViewPager(mViewPager);

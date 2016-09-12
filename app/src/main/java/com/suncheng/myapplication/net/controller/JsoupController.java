@@ -17,13 +17,13 @@ public class JsoupController extends BaseController {
         this.mJsoupLocalDao = new JsoupLocalDao();
     }
 
-    public void getArticleList(UpdateViewAsyncCallback callBack, final int pageNum) {
+    public void getArticleList(UpdateViewAsyncCallback callBack, final String remoteUrl, final int pageNum) {
         doAsyncTask("get_article_list", callBack,
                 new DoAsyncTaskCallback<Void, List<Article>>() {
 
                     @Override
                     public List<Article> doAsyncTask(Void... params) throws Exception {
-                        String url = Constants.POCO_URL + pageNum;
+                        String url = remoteUrl + pageNum;
                         return mJsoupRemoteDao.getArticleList(url);
                     }
                 }, (Void) null);

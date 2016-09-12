@@ -51,7 +51,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MasonryView>
        public MasonryView(View itemView){
            super(itemView);
            imageView= (ImageView) itemView.findViewById(R.id.image);
-           itemView.findViewById(R.id.bottom).setVisibility(View.GONE);
+           itemView.findViewById(R.id.title).setVisibility(View.GONE);
+           itemView.findViewById(R.id.scan).setVisibility(View.GONE);
+           itemView.findViewById(R.id.praise).setVisibility(View.GONE);
        }
     }
 }

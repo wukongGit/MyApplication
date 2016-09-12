@@ -33,6 +33,7 @@
             android:singleLine="true"
             android:textColor="#ffffff"
             android:textSize="12sp"
+            android:text="from poco.cn"
             />
         <TextView
             android:layout_below="@id/title"
