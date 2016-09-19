@@ -6,4 +6,6 @@
 /.idea/copyright
 .DS_Store
 /build
+/imageLoader/build
+/nohttp/build
 /captures
