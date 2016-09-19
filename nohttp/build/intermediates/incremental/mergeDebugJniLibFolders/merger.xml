@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\private\MyApplication\nohttp\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\private\MyApplication\nohttp\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\privatePro\nohttp\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\privatePro\nohttp\src\debug\jniLibs"/></dataSet></merger>
