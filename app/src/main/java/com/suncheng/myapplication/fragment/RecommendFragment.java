@@ -78,6 +78,7 @@ public class RecommendFragment extends BaseFragment {
                     currentPage = 1;
                     mJsoupController.getArticleList(new ArticlePullDownListCallback(), mUrl, currentPage);
                 } else {
+                    mProgressBar.setVisibility(View.GONE);
                     mListView.onRefreshComplete();
                 }
             }
@@ -88,6 +89,7 @@ public class RecommendFragment extends BaseFragment {
                     currentPage++;
                     mJsoupController.getArticleList(new ArticlePullUpListCallback(), mUrl, currentPage);
                 } else {
+                    mProgressBar.setVisibility(View.GONE);
                     mListView.onRefreshComplete();
                 }
 

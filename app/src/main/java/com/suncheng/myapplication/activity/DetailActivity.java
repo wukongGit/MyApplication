@@ -37,6 +37,7 @@ public class DetailActivity extends BaseActivity {
 
     private void initView() {
         mListView = (PullToRefreshRecyclerView) findViewById(R.id.news_list);
+        findViewById(R.id.progressbar).setVisibility(View.GONE);
         mListView.getRefreshableView().setLayoutManager(new LinearLayoutManager(this));
         SpacesItemDecoration decoration=new SpacesItemDecoration(16);
         mListView.getRefreshableView().addItemDecoration(decoration);
