@@ -11,7 +11,6 @@ import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.suncheng.myapplication.R;
-import com.suncheng.myapplication.anim.TVOffAnimation;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,19 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         mTitleBar = (SimpleTitleBar) window.findViewById(R.id.titleBar);
         mContentLayoutRoot = (FrameLayout) window.findViewById(R.id.layout_activity_base_content_root);
         onActivityCreate(savedInstanceState);
-    }
-
-    public void applicationFinish() {
-        mRoot.startAnimation(new TVOffAnimation());
-        TimerTask task = new TimerTask() {
-            public void run() {
-                Message message = Message.obtain();
-                message.what = 0;
-                handler.sendMessage(message);
-            }
-        };
-        timer = new Timer(true);
-        timer.schedule(task, 500);
     }
 
     protected abstract void onActivityCreate(Bundle savedInstanceState);

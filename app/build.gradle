@@ -1,20 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
-    }
-}
-
-greendao {
-    schemaVersion 2
-    daoPackage 'com.suncheng.myapplication.greendao.gen'
-    targetGenDir 'src/main/java'
-}
 
 def releaseTime() {
     return new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("PRC"))

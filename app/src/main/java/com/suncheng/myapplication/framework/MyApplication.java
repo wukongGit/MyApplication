@@ -3,10 +3,7 @@ package com.suncheng.myapplication.framework;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.suncheng.crashcatch.CrashHandler;
-import com.suncheng.myapplication.greendao.GreenDaoManager;
 import com.suncheng.myapplication.image.ImageHelper;
 import com.yolanda.nohttp.NoHttp;
 
@@ -43,7 +40,6 @@ public class MyApplication extends Application {
         AppConfig.getInstance();
         NoHttp.initialize(this);
         ImageHelper.getInstance().initImageloader(this);
-        GreenDaoManager.getInstance();
     }
 
     /**
