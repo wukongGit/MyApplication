@@ -45,7 +45,7 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    if (outputFile != null && outputFile.name.endsWith('.apk') && !outputFile.name.contains('debug')) {
                         // 输出apk名称为xxx_v1.0_2015-01-15_wandoujia.apk  xxx可以进行自定义
                         def fileName = "pro${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
