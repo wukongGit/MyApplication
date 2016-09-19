@@ -73,6 +73,8 @@ public class TestActivity extends Activity implements View.OnClickListener {
 
         mNameET.setText("");
 
+        
+
         mUserList.clear();
         mUserList.addAll(userDao.queryBuilder().build().list());
         mUserAdapter.notifyDataSetChanged();
