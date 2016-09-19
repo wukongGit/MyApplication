@@ -1,4 +1,20 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
+}
+
+greendao {
+    schemaVersion 2
+    daoPackage 'com.suncheng.myapplication.greendao.gen'
+    targetGenDir 'src/main/java'
+}
 
 def releaseTime() {
     return new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("PRC"))
@@ -77,4 +93,7 @@ dependencies {
     compile project(':pullToRefresh')
     // https://github.com/anthonycr/Grant
     compile 'com.anthonycr.grant:permissions:1.0'
+
+    compile 'org.greenrobot:greendao:3.0.1'
+    compile 'org.greenrobot:greendao-generator:3.0.0'
 }
