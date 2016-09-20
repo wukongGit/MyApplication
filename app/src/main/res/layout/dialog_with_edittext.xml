@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/title"
+        android:text="编辑昵称"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/dialog_cancel_txt_color"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:singleLine="true"
+        android:hint="请输入"
+        android:textSize="15sp"
+        android:textColorHint="#999ea8"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="#f2f2f2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textNum"
+            android:text="0"
+            android:textColor="#999ea8"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="/"
+            android:textColor="#999ea8"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textMaxNum"
+            android:text="20"
+            android:textColor="#999ea8"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    
+    <View
+        android:background="@color/dialog_line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/btn_cancel"
+            android:text="取消"
+            android:textSize="15sp"
+            android:background="@drawable/dialog_btn_bg_selector"
+            android:textColor="@color/dialog_cancel_txt_color"
+            android:layout_height="match_parent" />
+
+        <View
+            android:background="@color/dialog_line_color"
+            android:layout_width="1px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_ok"
+            android:text="确定"
+            android:background="@drawable/dialog_btn_bg_selector"
+            android:textColor="@color/dialog_ok_txt_color"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
