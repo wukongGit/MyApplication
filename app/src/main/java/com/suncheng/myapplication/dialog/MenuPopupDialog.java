@@ -2,6 +2,7 @@ package com.suncheng.myapplication.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.gx.tjsq.R;
-import com.tj.framework.util.BlankUtil;
+import com.suncheng.myapplication.R;
 
 import java.util.List;
 
@@ -58,13 +58,13 @@ class MenuPopupDialog extends Dialog implements OnClickListener {
 		window.setWindowAnimations(R.style.PopupDialogAnimation);
 
         if(buttons!=null && buttons.size()>0){
-            if(!BlankUtil.isBlank(title)){
+            if(!TextUtils.isEmpty(title)){
                 setMessage(title);
             }
             mContentView.setVisibility(View.VISIBLE);
             for(int i =0 ;i < buttons.size() ; i++){
                 if(i == 0 ) {
-                    if(!BlankUtil.isBlank(title))
+                    if(!TextUtils.isEmpty(title))
                         addDivider();
                 }
                 else

@@ -7,4 +7,10 @@
     <color name="titleBar">#21242d</color>
     <color name="white">#ffffff</color>
 
+    <color name="dialog_ok_txt_color">#d2b978</color>
+    <color name="dialog_cancel_txt_color">#3c415f</color>
+    <color name="dialog_title_txt_color">#3c415f</color>
+    <color name="dialog_line_color">#e6e6e6</color>
+    <color name="dialog_btn_press_color">#f2f2f2</color>
+
 </resources>

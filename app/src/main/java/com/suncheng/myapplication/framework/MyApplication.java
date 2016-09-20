@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.suncheng.crashcatch.CrashHandler;
-import com.suncheng.myapplication.image.ImageHelper;
-import com.yolanda.nohttp.NoHttp;
 
 public class MyApplication extends Application {
     private static MyApplication myApplication;
@@ -38,8 +36,6 @@ public class MyApplication extends Application {
         CrashHandler catchHandler = CrashHandler.getInstance();
         catchHandler.init(getApplicationContext());
         AppConfig.getInstance();
-        NoHttp.initialize(this);
-        ImageHelper.getInstance().initImageloader(this);
     }
 
     /**

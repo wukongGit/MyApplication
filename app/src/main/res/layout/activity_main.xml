@@ -1,45 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.suncheng.myapplication.view.PagerSlidingTabStrip
-            android:id="@+id/pagerStrip"
-            android:background="@color/white"
-            app:pstsDividerColor="@android:color/transparent"
-            app:pstsIndicatorColor="#FFD2B978"
-            app:pstsIndicatorHeight="2dp"
-            app:pstsShouldExpand="true"
-            app:pstsTabBackground="@android:color/transparent"
-            app:pstsTabPaddingLeftRight="13dp"
-            app:pstsIndicatorPaddingLeftRight="12dp"
-            app:pstsUnderlineHeight="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-        <ImageView
-            android:layout_width="16dp"
-            android:scaleType="fitXY"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/sliding_tab_shade"
-            android:layout_height="32dp" />
-
-        <View
-            android:layout_below="@+id/pagerStrip"
-            android:background="#FFF2F2F2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-    </RelativeLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/open"
+        android:text="open"
+        />
 
 </LinearLayout>

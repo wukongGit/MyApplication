@@ -1,1 +1,1 @@
-include ':app', ':nohttp', ':imageLoader', ':crashcatch', ':pullToRefresh'
+include ':app', ':crashcatch'

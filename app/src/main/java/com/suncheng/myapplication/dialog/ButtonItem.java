@@ -1,6 +1,6 @@
 package com.suncheng.myapplication.dialog;
 
-import com.gx.tjsq.R;
+import com.suncheng.myapplication.R;
 
 /**
  *

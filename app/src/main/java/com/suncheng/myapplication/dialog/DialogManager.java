@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -17,19 +18,13 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.gx.tjsq.R;
-import com.gx.tjsq.share.IExtraOperation;
-import com.gx.tjsq.share.ShareModel;
-import com.gx.tjsq.util.StringUtils;
-import com.tj.framework.util.BlankUtil;
+
+import com.suncheng.myapplication.R;
 
 import java.util.List;
 
-import cn.sharesdk.framework.PlatformActionListener;
-
 /**
  * 整个项目统一的对话框调用, 这是基础控件，请不要添加业务代码
- * Created by yulinye on 2016/7/5.
  */
 public class DialogManager {
 
@@ -155,7 +150,7 @@ public class DialogManager {
         TextView tip = (TextView) window.findViewById(R.id.title);
         tip.setText(title);
 
-        if (!BlankUtil.isBlank(content)) {
+        if (!TextUtils.isEmpty(content)) {
             TextView contentTv = (TextView) window.findViewById(R.id.content);
             contentTv.setVisibility(View.VISIBLE);
             contentTv.setText(content);
@@ -174,7 +169,7 @@ public class DialogManager {
         });
 
         TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
-        if(!StringUtils.isEmpty(cancelBtnText)) {
+        if(!TextUtils.isEmpty(cancelBtnText)) {
             cancel.setText(cancelBtnText);
         }
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -219,14 +214,14 @@ public class DialogManager {
         tip.setText(title);
 
         final TextView txNum = (TextView) window.findViewById(R.id.textNum);
-        if (!BlankUtil.isBlank(text)) {
+        if (!TextUtils.isEmpty((text))) {
             txNum.setText(text.length() + "");
         }
         final TextView txMaxNum = (TextView) window.findViewById(R.id.textMaxNum);
         txMaxNum.setText(maxNum + "");
 
         final EditText editText = (EditText) window.findViewById(R.id.editText);
-        if (!BlankUtil.isBlank(text)) {
+        if (!TextUtils.isEmpty(text)) {
             editText.setText(text);
         }
         editText.requestFocus();
@@ -304,20 +299,20 @@ public class DialogManager {
      * @param btnItems
      * @param cancelBtn
      */
-    public void showMenuPopupDialog(List<ButtonItem> btnItems, ButtonItem cancelBtn) {
-
-        if (!checkActivityValid()) {
-            return;
-        }
-
-        if (mDialog.isShowing()) {
-            mDialog.hide();
-        }
-        mDialog = new MenuPopupDialog(mContext, null, btnItems, cancelBtn);
-        mDialog.setCancelable(mCanceledOnClickBackKey);
-        mDialog.setCanceledOnTouchOutside(mCanceledOnClickOutside);
-        mDialog.show();
-    }
+//    public void showMenuPopupDialog(List<ButtonItem> btnItems, ButtonItem cancelBtn) {
+//
+//        if (!checkActivityValid()) {
+//            return;
+//        }
+//
+//        if (mDialog.isShowing()) {
+//            mDialog.hide();
+//        }
+//        mDialog = new MenuPopupDialog(mContext, null, btnItems, cancelBtn);
+//        mDialog.setCancelable(mCanceledOnClickBackKey);
+//        mDialog.setCanceledOnTouchOutside(mCanceledOnClickOutside);
+//        mDialog.show();
+//    }
 
     public void showMenuPopupDialog(List<ButtonItem> btnItems, String cancelText) {
 
@@ -334,28 +329,28 @@ public class DialogManager {
         mDialog.show();
     }
 
-    /**
-     * 分享入口
-     * @param shareModel
-     * @param platformActionListener
-     */
-    public void showShareDialog(ShareModel shareModel, PlatformActionListener platformActionListener) {
-        showShareDialog(shareModel, platformActionListener, null);
-    }
-    public void showShareDialog(ShareModel shareModel, PlatformActionListener platformActionListener, IExtraOperation operation) {
-        if (!checkActivityValid()) {
-            return;
-        }
-
-        if (mDialog.isShowing()) {
-            mDialog.hide();
-        }
-
-        mDialog = new SharePopupDialog(mContext, shareModel, platformActionListener, operation);
-        mDialog.setCancelable(mCanceledOnClickBackKey);
-        mDialog.setCanceledOnTouchOutside(mCanceledOnClickOutside);
-        mDialog.show();
-    }
+//    /**
+//     * 分享入口
+//     * @param shareModel
+//     * @param platformActionListener
+//     */
+//    public void showShareDialog(ShareModel shareModel, PlatformActionListener platformActionListener) {
+//        showShareDialog(shareModel, platformActionListener, null);
+//    }
+//    public void showShareDialog(ShareModel shareModel, PlatformActionListener platformActionListener, IExtraOperation operation) {
+//        if (!checkActivityValid()) {
+//            return;
+//        }
+//
+//        if (mDialog.isShowing()) {
+//            mDialog.hide();
+//        }
+//
+//        mDialog = new SharePopupDialog(mContext, shareModel, platformActionListener, operation);
+//        mDialog.setCancelable(mCanceledOnClickBackKey);
+//        mDialog.setCanceledOnTouchOutside(mCanceledOnClickOutside);
+//        mDialog.show();
+//    }
 
 
     public interface OnEditOkListener {
