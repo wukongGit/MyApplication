@@ -1,23 +1,28 @@
 package com.suncheng.myapplication.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.dialog.ButtonItem;
 import com.suncheng.myapplication.dialog.DialogManager;
 import com.suncheng.myapplication.framework.BaseActivity;
+import com.suncheng.myapplication.photo.CropHandler;
 import com.suncheng.myapplication.photo.CropHelper;
 import com.suncheng.myapplication.photo.CropParams;
+import com.suncheng.myapplication.utils.BitmapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener, CropHandler {
     CropParams mCropParams;
+    ImageView mImageView;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
@@ -28,6 +33,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private void initView() {
         setTitle("修图");
+        mImageView = (ImageView) findViewById(R.id.image);
         findViewById(R.id.open).setOnClickListener(this);
     }
 
@@ -82,5 +88,47 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         DialogManager.newInstance(this).showMenuPopupDialog(list, "取消");
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        CropHelper.handleResult(this, requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        CropHelper.clearCacheDir();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPhotoCropped(Uri uri) {
+        if (!mCropParams.compress)
+            mImageView.setImageBitmap(BitmapUtil.decodeUriAsBitmap(this, uri));
+    }
+
+    @Override
+    public void onCompressed(Uri uri) {
+        mImageView.setImageBitmap(BitmapUtil.decodeUriAsBitmap(this, uri));
+    }
+
+    @Override
+    public void onCancel() {
+
+    }
+
+    @Override
+    public void onFailed(String message) {
+
+    }
+
+    @Override
+    public void handleIntent(Intent intent, int requestCode) {
+        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public CropParams getCropParams() {
+        return mCropParams;
     }
 }
