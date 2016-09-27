@@ -3,6 +3,7 @@ package com.suncheng.myapplication.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 import com.suncheng.myapplication.R;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class DetailActivity extends BaseActivity {
     private PullToRefreshRecyclerView mListView;
+    private ProgressBar mProgressBar;
     private ImageAdapter mAdapter;
     private JsoupController mJsoupController;
     private Article mArticle;
@@ -37,13 +39,14 @@ public class DetailActivity extends BaseActivity {
 
     private void initView() {
         mListView = (PullToRefreshRecyclerView) findViewById(R.id.news_list);
-        findViewById(R.id.progressbar).setVisibility(View.GONE);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mListView.getRefreshableView().setLayoutManager(new LinearLayoutManager(this));
         SpacesItemDecoration decoration=new SpacesItemDecoration(16);
         mListView.getRefreshableView().addItemDecoration(decoration);
         mAdapter = new ImageAdapter();
         mListView.setAdapter(mAdapter);
         mJsoupController = new JsoupController();
+        mProgressBar.setVisibility(View.VISIBLE);
         mJsoupController.getArticleDetail(new ArticleDetailCallback(), mArticle.getUrl());
     }
 
@@ -53,11 +56,12 @@ public class DetailActivity extends BaseActivity {
         public void onPostExecute(ArrayList<String> articles) {
             mAdapter.setData(articles);
             mAdapter.notifyDataSetChanged();
+            mProgressBar.setVisibility(View.GONE);
         }
 
         @Override
         public void onException(Exception ie) {
-
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 

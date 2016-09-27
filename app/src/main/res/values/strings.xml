@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">美拍</string>
     <string name="action_settings">Settings</string>
+
+    <string name="icons">&#xe603; &#xe674;</string>
 </resources>

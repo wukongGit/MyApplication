@@ -1,5 +1,7 @@
 package com.suncheng.myapplication.net.controller;
 
+import android.util.Log;
+
 import com.suncheng.myapplication.model.Article;
 
 import org.json.JSONArray;
@@ -69,6 +71,7 @@ public class JsoupRemoteDao {
     }
 
     public List<String> getArticleDetail(String removeUrl) {
+        Log.e("sunc", "removeUrl==" + removeUrl);
         List<String> list = new ArrayList<>();
         Document doc = null;
         try {
