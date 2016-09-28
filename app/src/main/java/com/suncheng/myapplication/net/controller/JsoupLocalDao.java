@@ -1,6 +1,6 @@
 package com.suncheng.myapplication.net.controller;
+import com.sunc.controller.BaseLocalDao;
 import com.suncheng.myapplication.model.Article;
-import com.suncheng.myapplication.net.controller.BaseLocalDao;
 
 import java.util.List;
 

@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
+import com.sunc.controller.BaseController;
 import com.suncheng.commontools.utils.BlankUtil;
 import com.suncheng.commontools.utils.NetworkUtils;
 import com.suncheng.myapplication.R;
@@ -17,7 +18,6 @@ import com.suncheng.myapplication.adapter.MasonryAdapter;
 import com.suncheng.myapplication.framework.BaseFragment;
 import com.suncheng.myapplication.framework.Constants;
 import com.suncheng.myapplication.model.Article;
-import com.suncheng.myapplication.net.controller.BaseController;
 import com.suncheng.myapplication.net.controller.JsoupController;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
 
