@@ -18,7 +18,7 @@ package com.suncheng.myapplication.framework;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.suncheng.myapplication.utils.FileUtil;
+import com.suncheng.commontools.utils.FileUtil;
 
 import java.io.File;
 

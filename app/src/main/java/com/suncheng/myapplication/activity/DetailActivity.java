@@ -5,9 +5,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
+import com.suncheng.commontools.framwork.BaseActivity;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.adapter.ImageAdapter;
-import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.model.Article;
 import com.suncheng.myapplication.net.controller.BaseController;
 import com.suncheng.myapplication.net.controller.JsoupController;

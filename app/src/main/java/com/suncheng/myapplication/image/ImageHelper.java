@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.suncheng.myapplication.utils.FileUtil;
+import com.suncheng.commontools.utils.FileUtil;
 
 import java.io.File;
 

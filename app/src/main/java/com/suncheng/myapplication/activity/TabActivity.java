@@ -8,11 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.suncheng.commontools.framwork.BaseActivity;
+import com.suncheng.commontools.utils.BlankUtil;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.fragment.RecommendFragment;
-import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.framework.Constants;
-import com.suncheng.myapplication.utils.BlankUtil;
 import com.suncheng.myapplication.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;

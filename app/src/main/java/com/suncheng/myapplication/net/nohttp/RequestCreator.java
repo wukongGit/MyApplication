@@ -1,8 +1,8 @@
 package com.suncheng.myapplication.net.nohttp;
 
+import com.suncheng.commontools.utils.TelephonyUtils;
+import com.suncheng.commontools.utils.Version;
 import com.suncheng.myapplication.framework.MyApplication;
-import com.suncheng.myapplication.utils.TelephonyUtils;
-import com.suncheng.myapplication.utils.Version;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
@@ -25,7 +25,7 @@ public class RequestCreator {
 
     private static <T> void appendBaseParams(Request<T> request) {
         request.add("tssign", System.currentTimeMillis());
-        request.add("appVer", Version.getVersionCode());
+        request.add("appVer", Version.getVersionCode(MyApplication.getApp()));
         request.add("deviceId", TelephonyUtils.getImei(MyApplication.getApp()));
     }
 
