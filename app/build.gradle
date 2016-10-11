@@ -81,4 +81,5 @@ dependencies {
 //    compile 'org.greenrobot:greendao:3.0.1'
 //    compile 'org.greenrobot:greendao-generator:3.0.0'
     compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.1.5
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
