@@ -14,6 +14,7 @@ import com.suncheng.myapplication.framework.BaseActivity;
 import com.suncheng.myapplication.framework.Constants;
 import com.suncheng.myapplication.utils.BlankUtil;
 import com.suncheng.myapplication.view.PagerSlidingTabStrip;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -92,5 +93,14 @@ public class TabActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

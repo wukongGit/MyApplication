@@ -13,6 +13,7 @@ import com.suncheng.myapplication.model.Article;
 import com.suncheng.myapplication.net.controller.BaseController;
 import com.suncheng.myapplication.net.controller.JsoupController;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -65,5 +66,12 @@ public class DetailActivity extends BaseActivity {
         }
     }
 
-
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

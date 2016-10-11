@@ -12,8 +12,7 @@ android {
         applicationId "com.suncheng.myapplication"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionName "1.1"
     }
 
     signingConfigs {
@@ -36,7 +35,7 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             zipAlignEnabled true
             shrinkResources true
 
