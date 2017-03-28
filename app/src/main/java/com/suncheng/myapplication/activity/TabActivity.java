@@ -1,15 +1,15 @@
 package com.suncheng.myapplication.activity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
-
-import com.suncheng.commontools.framwork.BaseActivity;
-import com.suncheng.commontools.utils.BlankUtil;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.fragment.RecommendFragment;
 import com.suncheng.myapplication.framework.Constants;
@@ -17,14 +17,15 @@ import com.suncheng.myapplication.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-public class TabActivity extends BaseActivity {
+public class TabActivity extends AppCompatActivity {
     private ArrayList<String> mTitleList = new ArrayList<>();
     private ArrayList<Fragment> mFragmentList = new ArrayList<>();
     private PagerSlidingTabStrip mPagerSlidingTabStrip;
     private ViewPager mViewPager;
 
     @Override
-    protected void onActivityCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
         initView();
     }
@@ -71,11 +72,10 @@ public class TabActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            if (!BlankUtil.isBlank(mTitleList)) {
-                return mTitleList.get(position);
-            } else {
+            if(mTitleList == null || position >= mTitleList.size()) {
                 return "";
             }
+            return mTitleList.get(position);
         }
     }
 

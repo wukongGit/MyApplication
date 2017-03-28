@@ -11,14 +11,14 @@ import android.widget.ProgressBar;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 import com.sunc.controller.BaseController;
-import com.suncheng.commontools.utils.BlankUtil;
-import com.suncheng.commontools.utils.NetworkUtils;
 import com.suncheng.myapplication.R;
 import com.suncheng.myapplication.adapter.MasonryAdapter;
 import com.suncheng.myapplication.framework.BaseFragment;
 import com.suncheng.myapplication.framework.Constants;
 import com.suncheng.myapplication.model.Article;
 import com.suncheng.myapplication.net.controller.JsoupController;
+import com.suncheng.myapplication.utils.AndroidUtils;
+import com.suncheng.myapplication.utils.BlankUtil;
 import com.suncheng.myapplication.view.SpacesItemDecoration;
 
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class RecommendFragment extends BaseFragment {
         mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
-                if (NetworkUtils.isNetworkStrictlyAvailable(getActivity())) {
+                if (AndroidUtils.isNetworkConnected(getActivity())) {
                     currentPage = 1;
                     mJsoupController.getArticleList(new ArticlePullDownListCallback(), mUrl, currentPage);
                 } else {
@@ -84,7 +84,7 @@ public class RecommendFragment extends BaseFragment {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
-                if (NetworkUtils.isNetworkStrictlyAvailable(getActivity())) {
+                if (AndroidUtils.isNetworkConnected(getActivity())) {
                     currentPage++;
                     mJsoupController.getArticleList(new ArticlePullUpListCallback(), mUrl, currentPage);
                 } else {

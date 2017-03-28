@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.suncheng.myapplication.activity.DetailActivity;
 import com.suncheng.myapplication.R;
-import com.suncheng.myapplication.image.ImageHelper;
 import com.suncheng.myapplication.model.Article;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryAdapter.MasonryV
 
     @Override
     public void onBindViewHolder(MasonryView masonryView, int position) {
-        ImageHelper.getInstance().displayImage(products.get(position).getImgUrl(), masonryView.imageView, R.mipmap.ic_launcher);
+        Glide.with(masonryView.itemView.getContext()).load(products.get(position).getImgUrl()).placeholder(R.mipmap.logo).into(masonryView.imageView);
         masonryView.title.setText(products.get(position).getTitle());
         masonryView.author.setText(products.get(position).getAuthor());
         masonryView.praise.setText(products.get(position).getPraise());

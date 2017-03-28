@@ -5,8 +5,6 @@ import android.content.res.Configuration;
 
 import com.sunc.NoHttpWrapper;
 import com.suncheng.crashcatch.CrashHandler;
-import com.suncheng.myapplication.greendao.GreenDaoManager;
-import com.suncheng.myapplication.image.ImageHelper;
 
 public class MyApplication extends Application {
     private static MyApplication myApplication;
@@ -38,10 +36,7 @@ public class MyApplication extends Application {
 
         CrashHandler catchHandler = CrashHandler.getInstance();
         catchHandler.init(getApplicationContext());
-        AppConfig.getInstance();
         NoHttpWrapper.init(this);
-        ImageHelper.getInstance().initImageloader(this);
-        GreenDaoManager.getInstance();
     }
 
     /**

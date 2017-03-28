@@ -5,11 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/crashcatch/crashcatch.iml" filepath="$PROJECT_DIR$/crashcatch/crashcatch.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageLoader/imageLoader.iml" filepath="$PROJECT_DIR$/imageLoader/imageLoader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/imageLoader/imageLoader.iml" filepath="$PROJECT_DIR$/imageLoader/imageLoader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nohttp/nohttp.iml" filepath="$PROJECT_DIR$/nohttp/nohttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/nohttp/nohttp.iml" filepath="$PROJECT_DIR$/nohttp/nohttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/privatePro.iml" filepath="$PROJECT_DIR$/privatePro.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pullToRefresh/pullToRefresh.iml" filepath="$PROJECT_DIR$/pullToRefresh/pullToRefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/pullToRefresh/pullToRefresh.iml" filepath="$PROJECT_DIR$/pullToRefresh/pullToRefresh.iml" />
     </modules>
   </component>

@@ -17,4 +17,11 @@
         <attr name="pstsSmoothScroll" format="boolean" />
         <attr name="pstsExpandWrap" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="SimpleTitleBar">
+        <attr name="title_text_color" format="color|reference" />
+        <attr name="title_text" format="string" />
+        <attr name="bottom_shadow_show" format="boolean"/>
+        <attr name="style_transparent" format="boolean"/>
+    </declare-styleable>
 </resources>

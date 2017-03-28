@@ -4,9 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root">
+    <com.suncheng.myapplication.view.SimpleTitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        >
+    </com.suncheng.myapplication.view.SimpleTitleBar>
 
     <com.handmark.pulltorefresh.library.PullToRefreshRecyclerView
         android:id="@+id/news_list"
+        android:layout_below="@id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:smoothScrollbar="false"
@@ -18,5 +26,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressbar"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         />
 </RelativeLayout>

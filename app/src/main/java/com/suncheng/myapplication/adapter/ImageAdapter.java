@@ -5,8 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.suncheng.myapplication.R;
-import com.suncheng.myapplication.image.ImageHelper;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MasonryView>
 
     @Override
     public void onBindViewHolder(MasonryView masonryView, int position) {
-        ImageHelper.getInstance().displayImage(products.get(position), masonryView.imageView, R.mipmap.ic_launcher);
+        Glide.with(masonryView.itemView.getContext()).load(products.get(position)).placeholder(R.mipmap.logo).into(masonryView.imageView);
     }
 
 
